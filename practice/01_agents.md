@@ -69,7 +69,7 @@ Before writing any code, let's get the game running.
 4.  **Run the Game:**
     Start the backend server:
     ```bash
-    python backend.py --pipes
+    python -m src.backend.py --pipes
     ```
     Once the server is running, open the `html/play_human.html` file in your web browser.
     Use the mouse to play the game.
