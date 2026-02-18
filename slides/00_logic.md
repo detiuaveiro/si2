@@ -1,20 +1,6 @@
 ---
 title: Logic
-Subtitle: Intelligent Systems II
-author: Mário Antunes
-institute: Universidade de Aveiro
 date: February 11, 2026
-colorlinks: true
-highlight-style: tango
-mainfont: NotoSans
-theme: metropolis
-themeoptions:
-  - sectionpage=progressbar
-  - numbering=fraction
-  - progressbar=frametitle
-header-includes:
- - \usepackage{booktabs}
- - \usepackage{etoolbox}
 ---
 
 # Logic Revision

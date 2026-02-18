@@ -8,7 +8,7 @@ all: $(ALL_PDF)
 pdf: $(ALL_PDF)
 
 %.pdf: %.md
-	pandoc -s --pdf-engine=lualatex -o $@ $<
+	pandoc -s --metadata-file=config.yml -d defaults.yml --pdf-engine=lualatex -o $@ $<
 
 clean:
 	rm -rf *.pdf

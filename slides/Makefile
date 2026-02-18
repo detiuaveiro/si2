@@ -8,7 +8,7 @@ all: $(ALL_PDF)
 pdf: $(ALL_PDF)
 
 %.pdf: %.md
-	pandoc -t beamer -s --slide-level=2 --pdf-engine=lualatex -o $@ $<
+	pandoc -s --metadata-file=config.yml -d defaults.yml -t beamer --slide-level=2 --pdf-engine=lualatex -o $@ $<
 
 clean:
 	rm -rf *.pdf
