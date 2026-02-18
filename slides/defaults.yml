@@ -1,0 +1,4 @@
+resource-path:
+  - "."
+  - "../assets"
+  - "../assets/figures"
