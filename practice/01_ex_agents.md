@@ -1,6 +1,5 @@
 ---
 title: Agents
-date: February 11, 2026
 ---
 
 # Practice Guide: Flappy Bird with Neuro-evolution

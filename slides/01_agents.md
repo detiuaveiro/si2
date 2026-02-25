@@ -1,8 +1,5 @@
 ---
 title: Agents
-date: February 11, 2026
-header-includes:
- - \AtBeginEnvironment{longtable}{\scriptsize}
 ---
 
 # Agents and Intelligent Agents
@@ -105,7 +102,7 @@ Just as the world can be granular or smooth, so can the agent's choices.
 ---
 
 ## World State Definitions
- 
+
 We need more precise terms to describe the complexity of the state space.
 
 | Term | Definition | Example |

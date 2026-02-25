@@ -1,10 +1,5 @@
 ---
 title: Neuro-Evolution and Gradient-Free Optimization
-date: February 18, 2026
-header-includes:
- - \usepackage{amsmath}
- - \usepackage{amssymb}
- - \AtBeginEnvironment{longtable}{\scriptsize}
 ---
 
 # Part I: Foundations of Neural Computation
@@ -308,7 +303,7 @@ The "Butterfly Effect" in Neuro-Evolution.
 
 ## Beyond Randomness: Space-Filling Designs i
 **The Problem**:
-Standard Uniform Random sampling (`np.random.uniform`) is not "uniform" in small samples. 
+Standard Uniform Random sampling (`np.random.uniform`) is not "uniform" in small samples.
 It creates **clusters** and **gaps**.
 
 > *Consequence*: Parts of the search space are completely unexplored during initialization.

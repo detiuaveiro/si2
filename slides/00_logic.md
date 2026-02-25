@@ -1,6 +1,5 @@
 ---
 title: Logic
-date: February 11, 2026
 ---
 
 # Logic Revision
@@ -41,7 +40,7 @@ A logic system is defined by three main components:
 
 ---
 
-## Propositional Logic i 
+## Propositional Logic i
 Based on **propositions** (elementary formulas that can be True or False).
 
 * **Proposition**: An elementary formula (e.g., "Snow is white", "Sugar is a hydrocarbon").
