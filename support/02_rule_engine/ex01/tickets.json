@@ -1,0 +1,242 @@
+{
+    "contentType": "graph",
+    "nodes": [
+        {
+            "id": "node-request",
+            "type": "inputNode",
+            "name": "request",
+            "position": { "x": 50, "y": 250 },
+            "content": { "schema": "" }
+        },
+        {
+            "id": "node-switch",
+            "type": "switchNode",
+            "name": "Vehicle Type",
+            "position": { "x": 250, "y": 250 },
+            "content": {
+                "hitPolicy": "first",
+                "statements": [
+                    {
+                        "id": "path-light",
+                        "condition": "vehicle_type == \"Light\""
+                    },
+                    {
+                        "id": "path-heavy",
+                        "condition": "vehicle_type == \"Heavy\""
+                    }
+                ]
+            }
+        },
+        {
+            "id": "node-light-table",
+            "type": "decisionTableNode",
+            "name": "Light Vehicles",
+            "position": { "x": 550, "y": 100 },
+            "content": {
+                "hitPolicy": "first",
+                "inputs": [
+                    { "id": "in-zone", "name": "Zone", "field": "zone" },
+                    {
+                        "id": "in-speed",
+                        "name": "Excess Speed",
+                        "field": "excess_speed"
+                    }
+                ],
+                "outputs": [
+                    { "id": "out-fine", "name": "Fine (€)", "field": "fine" },
+                    {
+                        "id": "out-severity",
+                        "name": "Severity",
+                        "field": "severity"
+                    }
+                ],
+                "rules": [
+                    {
+                        "_id": "r1",
+                        "in-zone": "\"Urban\"",
+                        "in-speed": "<=20",
+                        "out-fine": "60",
+                        "out-severity": "\"Light\""
+                    },
+                    {
+                        "_id": "r2",
+                        "in-zone": "\"Urban\"",
+                        "in-speed": "<=40",
+                        "out-fine": "120",
+                        "out-severity": "\"Serious\""
+                    },
+                    {
+                        "_id": "r3",
+                        "in-zone": "\"Urban\"",
+                        "in-speed": "<=60",
+                        "out-fine": "300",
+                        "out-severity": "\"Very Serious\""
+                    },
+                    {
+                        "_id": "r4",
+                        "in-zone": "\"Urban\"",
+                        "in-speed": ">60",
+                        "out-fine": "500",
+                        "out-severity": "\"Very Serious\""
+                    },
+                    {
+                        "_id": "r5",
+                        "in-zone": "\"Rural\"",
+                        "in-speed": "<=30",
+                        "out-fine": "60",
+                        "out-severity": "\"Light\""
+                    },
+                    {
+                        "_id": "r6",
+                        "in-zone": "\"Rural\"",
+                        "in-speed": "<=60",
+                        "out-fine": "120",
+                        "out-severity": "\"Serious\""
+                    },
+                    {
+                        "_id": "r7",
+                        "in-zone": "\"Rural\"",
+                        "in-speed": "<=80",
+                        "out-fine": "300",
+                        "out-severity": "\"Very Serious\""
+                    },
+                    {
+                        "_id": "r8",
+                        "in-zone": "\"Rural\"",
+                        "in-speed": ">80",
+                        "out-fine": "500",
+                        "out-severity": "\"Very Serious\""
+                    }
+                ],
+                "passThrough": true,
+                "executionMode": "single"
+            }
+        },
+        {
+            "id": "node-heavy-table",
+            "type": "decisionTableNode",
+            "name": "Heavy Vehicles",
+            "position": { "x": 550, "y": 400 },
+            "content": {
+                "hitPolicy": "first",
+                "inputs": [
+                    { "id": "in-zone", "name": "Zone", "field": "zone" },
+                    {
+                        "id": "in-speed",
+                        "name": "Excess Speed",
+                        "field": "excess_speed"
+                    }
+                ],
+                "outputs": [
+                    { "id": "out-fine", "name": "Fine (€)", "field": "fine" },
+                    {
+                        "id": "out-severity",
+                        "name": "Severity",
+                        "field": "severity"
+                    }
+                ],
+                "rules": [
+                    {
+                        "_id": "r9",
+                        "in-zone": "\"Urban\"",
+                        "in-speed": "<=10",
+                        "out-fine": "60",
+                        "out-severity": "\"Light\""
+                    },
+                    {
+                        "_id": "r10",
+                        "in-zone": "\"Urban\"",
+                        "in-speed": "<=20",
+                        "out-fine": "120",
+                        "out-severity": "\"Serious\""
+                    },
+                    {
+                        "_id": "r11",
+                        "in-zone": "\"Urban\"",
+                        "in-speed": "<=40",
+                        "out-fine": "300",
+                        "out-severity": "\"Very Serious\""
+                    },
+                    {
+                        "_id": "r12",
+                        "in-zone": "\"Urban\"",
+                        "in-speed": ">40",
+                        "out-fine": "500",
+                        "out-severity": "\"Very Serious\""
+                    },
+                    {
+                        "_id": "r13",
+                        "in-zone": "\"Rural\"",
+                        "in-speed": "<=20",
+                        "out-fine": "60",
+                        "out-severity": "\"Light\""
+                    },
+                    {
+                        "_id": "r14",
+                        "in-zone": "\"Rural\"",
+                        "in-speed": "<=40",
+                        "out-fine": "120",
+                        "out-severity": "\"Serious\""
+                    },
+                    {
+                        "_id": "r15",
+                        "in-zone": "\"Rural\"",
+                        "in-speed": "<=60",
+                        "out-fine": "300",
+                        "out-severity": "\"Very Serious\""
+                    },
+                    {
+                        "_id": "r16",
+                        "in-zone": "\"Rural\"",
+                        "in-speed": ">60",
+                        "out-fine": "500",
+                        "out-severity": "\"Very Serious\""
+                    }
+                ],
+                "passThrough": true,
+                "executionMode": "single"
+            }
+        },
+        {
+            "id": "node-response",
+            "type": "outputNode",
+            "name": "response",
+            "position": { "x": 900, "y": 250 },
+            "content": { "schema": "" }
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge-1",
+            "sourceId": "node-request",
+            "targetId": "node-switch",
+            "type": "edge"
+        },
+        {
+            "id": "edge-2",
+            "sourceId": "node-switch",
+            "sourceHandle": "path-light",
+            "targetId": "node-light-table",
+            "type": "edge"
+        },
+        {
+            "id": "edge-3",
+            "sourceId": "node-switch",
+            "sourceHandle": "path-heavy",
+            "targetId": "node-heavy-table",
+            "type": "edge"
+        },
+        {
+            "id": "edge-4",
+            "sourceId": "node-light-table",
+            "targetId": "node-response",
+            "type": "edge"
+        },
+        {
+            "id": "edge-5",
+            "sourceId": "node-heavy-table",
+            "targetId": "node-response",
+            "type": "edge"
+        }
+    ]
+}

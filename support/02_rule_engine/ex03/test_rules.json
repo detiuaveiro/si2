@@ -1,0 +1,26 @@
+{
+  "filePath": "rules",
+  "testCases": [
+    {
+      "id": "y2rtbblt",
+      "name": "LedOff",
+      "input": {
+        "humidity": 0.75
+      },
+      "expectedOutput": {
+        "led": 0
+      }
+    },
+    {
+      "id": "20TXiRXz",
+      "name": "New test case",
+      "input": {
+        "humidity": 0.85
+      },
+      "expectedOutput": {
+        "led": 1
+      }
+    }
+  ],
+  "contentType": "test"
+}

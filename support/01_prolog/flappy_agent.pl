@@ -10,6 +10,6 @@ update_state(BirdY, PipeY) :-
 action(jump) :-
     bird_y(BY),
     next_pipe_bottom_y(PY),
-    BY > PY + 40, !. 
+    BY > PY + 40, !.
 
 action(stay).

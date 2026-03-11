@@ -1,0 +1,64 @@
+{
+    "contentType": "graph",
+    "nodes": [
+        {
+            "id": "node-request",
+            "type": "inputNode",
+            "position": { "x": 100, "y": 200 },
+            "content": { "schema": "" }
+        },
+        {
+            "id": "node-decision",
+            "type": "decisionTableNode",
+            "position": { "x": 350, "y": 200 },
+            "content": {
+                "hitPolicy": "first",
+                "inputs": [
+                    { "id": "in-bird", "name": "Bird Y", "field": "bird_y" },
+                    {
+                        "id": "in-pipe",
+                        "name": "Next Pipe Center Y",
+                        "field": "next_pipe_center_y"
+                    }
+                ],
+                "outputs": [
+                    { "id": "out-action", "name": "Action", "field": "action" }
+                ],
+                "rules": [
+                    {
+                        "_id": "jump-rule",
+                        "in-bird": "> next_pipe_center_y",
+                        "in-pipe": "",
+                        "out-action": "\"jump\""
+                    },
+                    {
+                        "_id": "stay-rule",
+                        "in-bird": "",
+                        "in-pipe": "",
+                        "out-action": "\"stay\""
+                    }
+                ]
+            }
+        },
+        {
+            "id": "node-response",
+            "type": "outputNode",
+            "position": { "x": 650, "y": 200 },
+            "content": { "schema": "" }
+        }
+    ],
+    "edges": [
+        {
+            "id": "edge-1",
+            "sourceId": "node-request",
+            "targetId": "node-decision",
+            "type": "edge"
+        },
+        {
+            "id": "edge-2",
+            "sourceId": "node-decision",
+            "targetId": "node-response",
+            "type": "edge"
+        }
+    ]
+}

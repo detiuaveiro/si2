@@ -19,10 +19,10 @@ ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).
 
 % 4. Arithmetic (Factorial)
 factorial(0, 1).
-factorial(N, Result) :- 
-    N > 0, 
-    N1 is N - 1, 
-    factorial(N1, R1), 
+factorial(N, Result) :-
+    N > 0,
+    N1 is N - 1,
+    factorial(N1, R1),
     Result is N * R1.
 
 % 5. List Length
@@ -39,14 +39,14 @@ concat_lists([H|T], L2, [H|R]) :- concat_lists(T, L2, R).
 
 % 8. Reverse List
 reverse_list([], []).
-reverse_list([H|T], Reversed) :- 
-    reverse_list(T, RevT), 
+reverse_list([H|T], Reversed) :-
+    reverse_list(T, RevT),
     concat_lists(RevT, [H], Reversed).
 
 % 9. Maximum in a List
 max_in_list([X], X).
-max_in_list([H|T], Max) :- 
-    max_in_list(T, TailMax), 
+max_in_list([H|T], Max) :-
+    max_in_list(T, TailMax),
     (H > TailMax -> Max = H ; Max = TailMax).
 
 % 10. Pathfinding in a Graph

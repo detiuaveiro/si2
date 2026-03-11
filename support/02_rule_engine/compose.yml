@@ -1,0 +1,53 @@
+services:
+  brms:
+    image: gorules/brms:latest
+    container_name: gorules-brms
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: gorules
+      DB_PASSWORD: gorules_secure_password
+      DB_NAME: gorules
+      DB_SSL_DISABLED: "true"
+      LICENSE_KEY: "5adede20-534f-4082-93a7-810301112af2"
+    depends_on:
+      - postgres
+      - mosquitto
+
+  postgres:
+    image: postgres:18-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: gorules
+      POSTGRES_PASSWORD: gorules_secure_password
+      POSTGRES_DB: gorules
+    shm_size: 128mb
+    volumes:
+      - ./volumes/postgres_data:/var/lib/postgresql
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./volumes/mosquitto/data:/mosquitto/data
+      - ./volumes/mosquitto/config:/mosquitto/config
+
+  mqtt_bridge:
+    build: ./mqtt_bridge
+    container_name: mqtt_bridge
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MQTT_BROKER=mosquitto
+      - GORULES_URL=http://brms:80/api/projects/pico/evaluate/picorules
+      - GORULES_TOKEN=p0CnuUByjBy9HQ7Yd3nSvGXM
+      - WINDOW_SIZE=5
+    volumes:
+      - ./mqtt_bridge:/app
+    depends_on:
+      - mosquitto
+      - brms

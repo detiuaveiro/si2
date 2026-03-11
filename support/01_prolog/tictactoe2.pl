@@ -1,6 +1,6 @@
 % Winning lines
-line(0, 1, 2). line(3, 4, 5). line(6, 7, 8). 
-line(0, 3, 6). line(1, 4, 7). line(2, 5, 8). 
+line(0, 1, 2). line(3, 4, 5). line(6, 7, 8).
+line(0, 3, 6). line(1, 4, 7). line(2, 5, 8).
 line(0, 4, 8). line(2, 4, 6).
 
 % Opponent definition

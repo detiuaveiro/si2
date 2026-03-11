@@ -1,0 +1,85 @@
+{
+  "edges": [
+    {
+      "id": "fc64aee1-9516-48f4-a3ce-8c6a1ea5e2ad",
+      "sourceId": "6720dc66-c55e-435c-8416-418a50085f50",
+      "type": "edge",
+      "targetId": "77d5f075-5008-41b4-a85e-38683c17c1c0"
+    },
+    {
+      "id": "bf71605f-9b9c-4100-b506-647408163338",
+      "sourceId": "77d5f075-5008-41b4-a85e-38683c17c1c0",
+      "type": "edge",
+      "targetId": "28642af5-f1bc-402a-942b-162fcc1856bb"
+    }
+  ],
+  "nodes": [
+    {
+      "type": "decisionTableNode",
+      "content": {
+        "hitPolicy": "first",
+        "rules": [
+          {
+            "_id": "1a268d98-104e-45c1-adcf-08328b6203c5",
+            "194846ff-3857-4fc0-8340-d2f02156c470": "1",
+            "58502711-edb5-4264-ae95-ea950ff0d306": ">=0.8"
+          },
+          {
+            "_id": "604c4dc6-fa7c-424a-8090-0fed1f392004",
+            "194846ff-3857-4fc0-8340-d2f02156c470": "0",
+            "58502711-edb5-4264-ae95-ea950ff0d306": "<0.8"
+          }
+        ],
+        "inputs": [
+          {
+            "id": "58502711-edb5-4264-ae95-ea950ff0d306",
+            "name": "Input",
+            "field": "humidity"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "194846ff-3857-4fc0-8340-d2f02156c470",
+            "name": "Output",
+            "field": "led"
+          }
+        ],
+        "passThrough": true,
+        "inputField": null,
+        "outputPath": null,
+        "executionMode": "single"
+      },
+      "id": "77d5f075-5008-41b4-a85e-38683c17c1c0",
+      "name": "decisionTable1",
+      "position": {
+        "x": 355,
+        "y": 275
+      }
+    },
+    {
+      "type": "inputNode",
+      "content": {
+        "schema": ""
+      },
+      "id": "6720dc66-c55e-435c-8416-418a50085f50",
+      "name": "request",
+      "position": {
+        "x": 60,
+        "y": 200
+      }
+    },
+    {
+      "type": "outputNode",
+      "content": {
+        "schema": ""
+      },
+      "id": "28642af5-f1bc-402a-942b-162fcc1856bb",
+      "name": "response",
+      "position": {
+        "x": 795,
+        "y": 390
+      }
+    }
+  ],
+  "contentType": "graph"
+}

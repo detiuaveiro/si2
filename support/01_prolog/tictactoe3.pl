@@ -1,8 +1,8 @@
 % --- 1. Game State Evaluation ---
 
 % Winning lines (indices on a 3x3 board)
-line(0, 1, 2). line(3, 4, 5). line(6, 7, 8). 
-line(0, 3, 6). line(1, 4, 7). line(2, 5, 8). 
+line(0, 1, 2). line(3, 4, 5). line(6, 7, 8).
+line(0, 3, 6). line(1, 4, 7). line(2, 5, 8).
 line(0, 4, 8). line(2, 4, 6).
 
 % Define opponents
@@ -61,22 +61,22 @@ evaluate_moves([], _, _, _, _, _, BestMove, BestScore, BestMove, BestScore).
 
 % Recursive Step: Try a move, see how the opponent responds, and decide to prune or continue.
 evaluate_moves([Move|RestMoves], Board, Player, Opp, Alpha, Beta, CurrentBestMove, CurrentBestScore, FinalBestMove, FinalBestScore) :-
-    
+
     % 1. Simulate the move
     move(Board, Move, Player, NextBoard),
-    
+
     % 2. Ask the opponent to evaluate this new board.
     % In Negamax, the opponent's Alpha is our -Beta, and their Beta is our -Alpha!
     NewAlpha is -Beta,
     NewBeta is -Alpha,
     minimax(NextBoard, Opp, NewAlpha, NewBeta, _, OppScore),
-    
+
     % 3. Our score is the exact opposite of the opponent's score
     Score is -OppScore,
 
     % 4. ALPHA-BETA PRUNING CHECK
     ( Score >= Beta ->
-        % PRUNE! This move is so good for us that the opponent will never allow 
+        % PRUNE! This move is so good for us that the opponent will never allow
         % this game state to happen. Stop searching immediately.
         FinalBestMove = Move,
         FinalBestScore = Score

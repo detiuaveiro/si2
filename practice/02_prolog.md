@@ -2,7 +2,7 @@
 title: Logic Agents
 ---
 
-# Practice Guide: Building Logic Agents with Prolog and PySwip
+# Practice Guide: Prolog
 
 In this guide, you will transition from basic logical programming in Prolog to building hybrid AI systems where Python handles the environment (game states, physics, UI) and Prolog acts as the "brain" of your agent making logical decisions.
 

@@ -2,7 +2,7 @@
 title: Agents
 ---
 
-# Practice Guide: Flappy Bird with Neuro-evolution
+# Practice Guide: Neuro-evolution
 
 In this guide, you will transition from a basic reflex agent to a sophisticated AI capable of learning how to play Flappy Bird using **Neuro-evolution**.
 
