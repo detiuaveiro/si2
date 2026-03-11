@@ -9,7 +9,7 @@ import ntptime  # This imports the ntptime.py file you created
 # --- Configuration ---
 WIFI_SSID = "TheOffice"        # Change to your Wi-Fi SSID
 WIFI_PASSWORD = "8006002030" # Change to your Wi-Fi Password
-MQTT_BROKER = "192.168.1.220"           # Change to your broker IP
+MQTT_BROKER = "192.168.0.101"           # Change to your broker IP
 CLIENT_ID = "pico"
 SENSOR_TOPIC = b"sensors/pico"
 ACTION_TOPIC = b"actions/pico"
