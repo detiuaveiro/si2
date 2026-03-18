@@ -5,6 +5,7 @@ import logging
 import uuid
 
 import requests
+import websockets
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger(__name__)
@@ -12,9 +13,9 @@ wslogger = logging.getLogger("websockets")
 wslogger.setLevel(logging.WARN)
 
 # --- CONFIGURATION: Students update these ---
-PROJECT_ID = "YOUR_PROJECT_ID_HERE"
-DOCUMENT_PATH = "flappy_rules"
-GORULES_TOKEN = "YOUR_ACCESS_TOKEN_HERE"
+PROJECT_ID = "flappy"
+DOCUMENT_PATH = "flappyrules"
+GORULES_TOKEN = "miA46fXqezWUjDTBRr08koOJ"
 
 GORULES_URL = (
     f"http://localhost:8080/api/projects/{PROJECT_ID}/evaluate/{DOCUMENT_PATH}"
@@ -51,7 +52,8 @@ async def player_game(url: str) -> float:
 
                 # Calculate variables for GoRules
                 # The gap center is exactly halfway between the top and bottom pipe pieces
-                c = (closest_pipe["py_t"] + closest_pipe["py_b"]) / 2.0
+                # c = (closest_pipe["py_t"] + closest_pipe["py_b"]) / 2.0
+                c = closest_pipe["py_b"] - 48
                 py = player["py"]
 
                 # 1. Prepare the JSON payload context for GoRules
@@ -72,7 +74,7 @@ async def player_game(url: str) -> float:
                         result_data = response.json().get("result", {})
 
                         # 3. If GoRules deduced 'jump', send the click command
-                        if result_data.get("action") == "jump":
+                        if result_data.get("jump") == 1:
                             await websocket.send(json.dumps({"cmd": "click"}))
                     else:
                         logger.error(
