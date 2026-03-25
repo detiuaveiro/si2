@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+
+  <defs>
+    <radialGradient id="playerGrad" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#88C0D0" />
+      <stop offset="100%" stop-color="#5E81AC" />
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="10" height="10" fill="#4C566A" />
+  <rect x="10" y="0" width="10" height="10" fill="#4C566A" />
+  <rect x="20" y="0" width="10" height="10" fill="#A3BE8C" />
+  <rect x="30" y="0" width="10" height="10" fill="#4C566A" />
+
+  <rect x="0" y="10" width="10" height="10" fill="#4C566A" />
+  <rect x="10" y="10" width="10" height="10" fill="#D8DEE9" />
+  <rect x="20" y="10" width="10" height="10" fill="#D8DEE9" />
+  <rect x="30" y="10" width="10" height="10" fill="#4C566A" />
+
+  <rect x="0" y="20" width="10" height="10" fill="#4C566A" />
+  <rect x="10" y="20" width="10" height="10" fill="#D8DEE9" />
+  <rect x="20" y="20" width="10" height="10" fill="#4C566A" />
+  <rect x="30" y="20" width="10" height="10" fill="#4C566A" />
+
+  <rect x="0" y="30" width="10" height="10" fill="#4C566A" />
+  <rect x="10" y="30" width="10" height="10" fill="#D8DEE9" />
+  <rect x="20" y="30" width="10" height="10" fill="#D8DEE9" />
+  <rect x="30" y="30" width="10" height="10" fill="#D8DEE9" /> 
+  <circle cx="35" cy="35" r="4" fill="url(#playerGrad)" />
+
+</svg>
