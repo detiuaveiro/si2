@@ -1,0 +1,212 @@
+:root {
+    --nord0: #2e3440;
+    --nord1: #3b4252;
+    --nord2: #434c5e;
+    --nord3: #4c566a;
+    --nord4: #d8dee9;
+    --nord5: #e5e9f0;
+    --nord6: #eceff4;
+    --nord7: #8fbcbb;
+    --nord8: #88c0d0;
+    --nord9: #81a1c1;
+    --nord10: #5e81ac;
+    --nord11: #bf616a;
+    --nord12: #d08770;
+    --nord13: #ebcb8b;
+    --nord14: #a3be8c;
+    --nord15: #b48ead;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--nord0);
+    color: var(--nord4);
+    font-family: monospace;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#ui-layer {
+    width: 300px;
+    background-color: var(--nord1);
+    border-right: 2px solid var(--nord3);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+button,
+select,
+input {
+    background-color: var(--nord3);
+    color: var(--nord6);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: var(--nord9);
+    color: var(--nord0);
+}
+
+#canvas-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--nord0);
+}
+
+canvas {
+    background-color: var(--nord1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    cursor: crosshair;
+}
+
+#editor-tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Make the 'Save Map' button span both columns so it stands out */
+#editor-tools button:last-child {
+    grid-column: 1 / -1;
+    background-color: var(
+        --nord10
+    ); /* Slightly different color to highlight saving */
+}
+
+#editor-tools button:last-child:hover {
+    background-color: var(--nord14); /* Green hover for save */
+}
+
+#canvas-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--nord0);
+    padding: 20px;
+    gap: 20px;
+}
+
+.view-panel {
+    flex: 1;
+    max-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--nord1);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.view-panel h3 {
+    margin-top: 0;
+    color: var(--nord8);
+}
+.view-panel h4 {
+    margin-bottom: 5px;
+    color: var(--nord4);
+}
+
+#prob-display {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.prob-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 10px;
+}
+
+.lbl {
+    width: 50px;
+    text-align: right;
+}
+.bar-bg {
+    flex-grow: 1;
+    background-color: var(--nord0);
+    height: 15px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.bar-fill {
+    background-color: var(--nord14);
+    height: 100%;
+    width: 0%;
+    transition: width 0.2s ease;
+}
+
+#compass {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    background-color: var(--nord0);
+    border: 3px solid var(--nord3);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--nord4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+#compass .dir-n {
+    position: absolute;
+    top: 4px;
+    color: var(--nord11);
+}
+#compass .dir-s {
+    position: absolute;
+    bottom: 4px;
+}
+#compass .dir-e {
+    position: absolute;
+    right: 6px;
+}
+#compass .dir-w {
+    position: absolute;
+    left: 6px;
+}
+
+#compass::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--nord4);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Nord Map Simulator</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="ui-layer">
+            <div id="main-menu" class="panel">
+                <h1>Simulator</h1>
+                <button onclick="app.showMenu('run-menu')">Run Map</button>
+                <button onclick="app.showMenu('edit-menu')">Edit Map</button>
+            </div>
+
+            <div id="run-menu" class="panel hidden">
+                <h2>Select Map</h2>
+                <select id="map-select"></select>
+                <button onclick="app.loadMap()">Load</button>
+                <div id="sim-controls" class="hidden">
+                    <p id="agent-status">Agent: Disconnected</p>
+                    <button onclick="app.startSimulation()">
+                        Start Simulation
+                    </button>
+                    <button onclick="app.resetSimulation()">Reset</button>
+                    <button onclick="app.stopSimulation()">Stop</button>
+                </div>
+                <button onclick="app.showMenu('main-menu')">Back</button>
+            </div>
+
+            <div id="edit-menu" class="panel hidden">
+                <h2>Create Map</h2>
+                <input type="text" id="new-map-name" placeholder="Map Name" />
+                <select id="new-map-type">
+                    <option value="room">Room</option>
+                    <option value="maze">Maze</option>
+                </select>
+                <input
+                    type="number"
+                    id="new-map-w"
+                    placeholder="Width"
+                    value="10"
+                    min="2"
+                    max="50"
+                />
+                <input
+                    type="number"
+                    id="new-map-h"
+                    placeholder="Height"
+                    value="10"
+                    min="2"
+                    max="50"
+                />
+                <button onclick="app.createNewMap()">Create New</button>
+                <hr />
+                <div id="editor-tools" class="hidden">
+                    <button onclick="app.setEditTool('floor')">Floor</button>
+                    <button onclick="app.setEditTool('obstacle')">
+                        Obstacle
+                    </button>
+                    <button onclick="app.setEditTool('start')">
+                        Set Start
+                    </button>
+                    <button onclick="app.setEditTool('target')">
+                        Set Target
+                    </button>
+                    <button onclick="app.saveMap()">Save Map</button>
+                </div>
+                <button onclick="app.showMenu('main-menu')">Back</button>
+            </div>
+        </div>
+
+        <div id="canvas-container">
+            <div class="view-panel" id="ground-truth-panel">
+                <h3>World Ground Truth</h3>
+                <div class="map-wrapper">
+                    <canvas id="sim-canvas"></canvas>
+                </div>
+                <div id="compass">
+                    <span class="dir-n">N</span>
+                    <span class="dir-e">E</span>
+                    <span class="dir-s">S</span>
+                    <span class="dir-w">W</span>
+                </div>
+            </div>
+
+            <div
+                class="view-panel"
+                id="agent-brain-panel"
+                style="display: none"
+            >
+                <h3>Agent's Internal Map</h3>
+                <div class="map-wrapper">
+                    <canvas id="agent-canvas"></canvas>
+                </div>
+                <div id="prob-display">
+                    <h4>Current Action Probabilities</h4>
+                    <div class="prob-bar">
+                        <span class="lbl">North:</span>
+                        <div class="bar-bg">
+                            <div id="prob-N" class="bar-fill"></div>
+                        </div>
+                        <span id="txt-N">0%</span>
+                    </div>
+                    <div class="prob-bar">
+                        <span class="lbl">South:</span>
+                        <div class="bar-bg">
+                            <div id="prob-S" class="bar-fill"></div>
+                        </div>
+                        <span id="txt-S">0%</span>
+                    </div>
+                    <div class="prob-bar">
+                        <span class="lbl">East:</span>
+                        <div class="bar-bg">
+                            <div id="prob-E" class="bar-fill"></div>
+                        </div>
+                        <span id="txt-E">0%</span>
+                    </div>
+                    <div class="prob-bar">
+                        <span class="lbl">West:</span>
+                        <div class="bar-bg">
+                            <div id="prob-W" class="bar-fill"></div>
+                        </div>
+                        <span id="txt-W">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+{
+    "width": 5,
+    "height": 7,
+    "type": "maze",
+    "grid": [
+        ["floor", "floor", "floor", "floor", "floor"],
+        ["floor", "obstacle", "obstacle", "obstacle", "obstacle"],
+        ["floor", "floor", "floor", "floor", "floor"],
+        ["obstacle", "obstacle", "obstacle", "obstacle", "floor"],
+        ["floor", "floor", "floor", "floor", "floor"],
+        ["floor", "obstacle", "obstacle", "obstacle", "obstacle"],
+        ["floor", "floor", "floor", "floor", "floor"]
+    ],
+    "start": [0, 6],
+    "target": [4, 0]
+}

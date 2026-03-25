@@ -94,3 +94,52 @@ The agent must decide to `CLICK` or `IDLE` based on a binned state of `(vertical
 4. **Exploration Decay:** Implement a temperature **T** for Boltzmann sampling to balance exploring new moves vs. exploiting known good moves:
    $$P(action)=\frac{e^{Q(s,a)/T}}{\sum e^{Q(s,a')/T}}$$
    Start with **T=1.0** (random) and decay it to **T=0.01** (deterministic) over 1,000 epochs.
+
+---
+
+Here is the missing exercise formatted to match the style, structure, and academic tone of your practice sheet.
+
+---
+
+## Exercise 5: Maze
+
+In this final exercise, you will move from abstract probability tables to a real-time, interactive spatial environment. You will deploy a full client-server simulator, interface with an abstract base class, and develop agents that must actively balance heuristics, spatial memory, and exploration strategies to solve both Mazes and Room Sweeps.
+
+**The Scenario:**
+
+You are provided with a complete simulation stack: an asynchronous Python backend that manages ground truth, an HTML5/Canvas frontend that visualizes the environment and agent telemetry, and a set of reference agents. The environment consists of 2D discrete planes with obstacles, floors, a starting point, and optionally a target.
+
+### 1. The Simulator Environment
+
+The simulator operates on a Star-topology WebSocket architecture:
+
+* **The Backend (Python/Async):** Acts as the central hub. It loads JSON map files, validates all agent movements, calculates objective completion (reaching a target or sweeping all floor tiles), and tracks environment heatmaps (e.g., how many times an agent visits a cell or bumps into a wall).
+* **The Frontend (JavaScript/HTML5):** A passive viewer and editor. It renders the "World Ground Truth" and dynamically updates an "Agent's Internal Map" side-by-side using telemetry data sent by the agent.
+* **Map Types:** 
+  * `maze`: The objective is to navigate from the start cell to the target cell.
+  * `room`: The objective is to visit every reachable floor cell at least once (target is `null`).
+
+### 2. Deployment and Map Creation
+
+You must run the simulator locally to test your agents.
+
+* **Deployment:** The infrastructure is containerized. Run `docker compose up -d` in the root directory to spin up the Python backend (`:8765`) and the Nginx frontend (`:8080`).
+* **Map Editor:** Access [http://localhost:8080](http://localhost:8080) in your browser. Use the built-in UI to create new maps. You can define the dimensions, toggle between Maze/Room types, and use your mouse to paint obstacles, floors, and start/target nodes. Maps are automatically saved as JSONs to the mounted `/maps` volume.
+
+### 3. The `BaseAgent` Architecture
+
+To standardize communication, all agents must inherit from the `BaseAgent` class. This class abstracts the network layer so you can focus entirely on logic and probability.
+
+* **The Run Loop:** The base class automatically connects to the server, parses incoming states, handles simulation resets (wiping memory), and dispatches telemetry.
+* **The Router:** The `deliberate()` method checks the current state. If a `target` exists, it routes the logic to `deliberate_maze()`. If the target is `null`, it routes to `deliberate_room()`.
+* **Telemetry:** Agents can call `send_telemetry()` to broadcast their internal `belief_state` (visited cells) and `current_probs` to the frontend for real-time visualization.
+
+### Your Task:
+
+1.  **Develop Logic Agents:** Implement a deterministic algorithm (such as Depth-First Search) extending the `BaseAgent`. Ensure it methodically maps the environment and utilizes a stack to backtrack out of dead ends.
+2.  **Develop Probabilistic Agents:** Create an agent that uses Bayesian updating to navigate. 
+    * For mazes, implement an A* Manhattan heuristic to gently bias the initial action probabilities toward the target. 
+    * For rooms, implement an exploration prior that heavily biases the agent toward unvisited cells. 
+    * Implement memory updates that strictly penalize actions leading into known dead ends.
+3.  **Map Generation:** Use the frontend editor to design challenging environments. Propose at least three maps: a classic spiral trap, a wide-open room with central pillars (to test infinite loop detection), and a scattered obstacle course.
+4.  **Optimize the Reference Agents:** Run your agents against the proposed maps. Analyze the telemetry to identify bottlenecks (e.g., getting stuck in local minima, excessive backtracking) and optimize your hyperparameters (backtrack penalties, target weights) to minimize the total steps required to complete the objectives.
