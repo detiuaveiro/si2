@@ -1,0 +1,438 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  12pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Noto Serif}
+  \setsansfont[]{Noto Sans}
+  \setmonofont[]{Noto Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{setspace}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\fancyfoot{}
+\usepackage{longtable,booktabs}
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\normalsize}
+\AtBeginEnvironment{verbatim}{\normalsize}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Agents},
+  pdfauthor={Mário Antunes},
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Agents}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Intelligent Systems II}
+\author{Mário Antunes}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\setstretch{1.25}
+\section{Practice Guide:
+Neuro-evolution}\label{practice-guide-neuro-evolution}
+
+In this guide, you will transition from a basic reflex agent to a
+sophisticated AI capable of learning how to play Flappy Bird using
+\textbf{Neuro-evolution}.
+
+The game architecture is split into two parts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Backend (Python):} Runs the game physics and logic using
+  asynchronous websockets.
+\item
+  \textbf{Frontend (HTML5/Canvas):} Visualizes the state sent by the
+  server.
+\end{enumerate}
+
+\subsection{Part 1: Setup}\label{part-1-setup}
+
+Before writing any code, let's get the game running.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Download the Repository:} Clone the course repository:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ clone https://github.com/detiuaveiro/flappy{-}bird{-}agent.git}
+\BuiltInTok{cd}\NormalTok{ flappy{-}bird{-}agent}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Create a Virtual Environment:} It is best practice to isolate
+  your dependencies.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{python3} \AttributeTok{{-}m}\NormalTok{ venv venv}
+\BuiltInTok{source}\NormalTok{ venv/bin/activate}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Install Dependencies:} Install the required libraries.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{pip}\NormalTok{ install }\AttributeTok{{-}r}\NormalTok{ requirements.txt}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Run the Game:} Start the backend server:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{python} \AttributeTok{{-}m}\NormalTok{ src.backend.py }\AttributeTok{{-}{-}pipes}
+\end{Highlighting}
+\end{Shaded}
+
+  Once the server is running, open the \texttt{html/play\_human.html}
+  file in your web browser. Use the mouse to play the game.
+\end{enumerate}
+
+\subsection{Part 2: The Basic Agent (Reflex
+Agent)}\label{part-2-the-basic-agent-reflex-agent}
+
+Your first task is to understand the communication protocol. The server
+sends the \textbf{World State} as a JSON object via websockets.
+
+\textbf{Task:} 1. Review \texttt{play\_game} method in \texttt{play.py}.
+2. Locate the message handling loop. You will see a JSON object
+representing the state. 3. Implement a simple \textbf{Rule-Based Agent}.
+Do not use Machine Learning yet. Write a simple \texttt{if} statement.
+
+\textbf{Example Logic:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# A simple reflex agent}
+\ControlFlowTok{if}\NormalTok{ state[}\StringTok{\textquotesingle{}bird\_y\textquotesingle{}}\NormalTok{] }\OperatorTok{\textgreater{}}\NormalTok{ state[}\StringTok{\textquotesingle{}next\_pipe\_bottom\_y\textquotesingle{}}\NormalTok{] }\OperatorTok{+} \DecValTok{50}\NormalTok{:}
+\NormalTok{    action }\OperatorTok{=} \StringTok{"jump"}
+\ControlFlowTok{else}\NormalTok{:}
+\NormalTok{    action }\OperatorTok{=} \StringTok{"stay"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Run this agent and observe. Does it crash? Can it handle different pipe
+heights?
+\end{quote}
+
+\subsection{Part 3: The Intelligent Agent
+(Neuro-evolution)}\label{part-3-the-intelligent-agent-neuro-evolution}
+
+Now we move to the core of this course: \textbf{Neuro-evolution}.
+
+\subsubsection{1. Theoretical Background}\label{theoretical-background}
+
+Why use Neuro-evolution for Flappy Bird?
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Continuous World:} The bird's position, velocity, and pipe
+  locations are continuous values (floats).
+\item
+  \textbf{Discrete Action:} The output is binary (Jump or Don't Jump).
+\item
+  \textbf{Partial Observability:} The agent doesn't need to know the
+  entire map; it only needs a ``partial view'' (distance to the next
+  pipes).
+\end{itemize}
+
+\textbf{The Solution: Neural Networks + Evolutionary Algorithms}
+
+Instead of using Reinforcement Learning (like Q-Learning) which requires
+a state table (hard for continuous worlds) or Gradient Descent (which
+requires a dataset of ``correct'' moves), we use
+\textbf{Neuro-evolution}.
+
+\begin{itemize}
+\item
+  \textbf{The Brain (MLP):} We use a Multi-Layer Perceptron.
+\item
+  \textbf{Input:} Normalized state (Distance to pipe X, Distance to pipe
+  Y, Velocity).
+\item
+  \textbf{Hidden Layers:} Processing units.
+\item
+  \textbf{Output:} A single neuron with a Sigmoid activation. If Output
+  \textgreater{} 0.5 Jump.
+\item
+  \textbf{The Optimization (Evolution):} We do not ``train'' the network
+  with backpropagation. Instead, we \textbf{evolve} the weights of the
+  neural network.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Population:} Generate 50 birds with random weights.
+\item
+  \textbf{Evaluation:} Let them all play. The ``Fitness'' is the score
+  (distance traveled).
+\item
+  \textbf{Selection:} Keep the weights of the birds that flew the
+  furthest.
+\item
+  \textbf{Crossover \& Mutation:} Create a new generation of birds by
+  mixing the weights of the best parents and adding random mutations.
+\end{enumerate}
+
+\subsubsection{2. Implementation}\label{implementation}
+
+Open the \texttt{train.py} file. The repository is set up to use a
+Python optimization library
+(\href{https://pypi.org/project/pyBlindOpt/}{PyBlindOpt}; take some time
+to browse the
+\href{https://mariolpantunes.github.io/pyBlindOpt/pyBlindOpt.html}{documentation}).
+
+\textbf{Your Task:} Configure the Neuro-evolution loop.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Define the Problem:} Map the Neural Network weights to a 1D
+  vector. The optimization algorithm will try to find the vector of
+  weights that maximizes the game score.
+\item
+  \textbf{Select an Algorithm:} The library supports several
+  optimization algorithms, such as:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{DE (Differential Evolution):} Good for global search,
+  maintains diversity.
+\item
+  \textbf{PSO (Particle Swarm Optimization):} Simulates a flock of birds
+  finding food.
+\item
+  \textbf{GWO (Grey Wolf Optimizer):} Mimics the leadership hierarchy of
+  wolves.
+\item
+  \textbf{CS (Cuckoo Search):} Based on the brood parasitism of cuckoo
+  birds.
+\end{itemize}
+
+\subsubsection{3. Experiments}\label{experiments}
+
+Run the training using different configurations and observe the impact
+on convergence speed (how fast they learn) and stability (do they forget
+how to fly?).
+
+\textbf{Experiment A: Algorithm Comparison} Run the training for 30
+generations with a population of 30 for each algorithm:
+
+\begin{itemize}
+\tightlist
+\item
+  Does \textbf{PSO} converge faster than \textbf{DE}?
+\item
+  Does \textbf{GWO} find a more stable solution?
+\end{itemize}
+
+\textbf{Experiment B: Initialization} Check the documentation for the
+optimization library regarding
+\href{https://mariolpantunes.github.io/pyBlindOpt/pyBlindOpt/init.html}{\emph{Initialization
+Metrics}}.
+
+\begin{itemize}
+\tightlist
+\item
+  How does the range of initial random weights (e.g.,
+  \texttt{{[}-1,\ 1{]}} vs \texttt{{[}-5,\ 5{]}}) affect the learning?
+\item
+  If weights start too large, the sigmoid output might saturate (always
+  1 or always 0), making the bird constantly jump or never jump.
+\end{itemize}
+
+\textbf{Experiment C: Advanced Initialization Strategies} As discussed
+in the lectures, standard Random Initialization can result in clusters
+and gaps in the search space. The library supports advanced strategies
+to mitigate this.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Opposition-Based Learning (OBL):}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Enable OBL initialization in your configuration.
+\item
+  Observation: Compare the ``Best Score'' in Generation 0 (before any
+  evolution happens) between Random and OBL. Does the OBL population
+  start with a ``smarter'' agent purely by checking opposite weights?
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Sampling Strategies (Sobol / LHS):}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Switch the sampler to Sobol Sequence or Latin Hypercube Sampling
+  (LHS).
+\item
+  Analysis: Does covering the search space more evenly reduce the
+  variance between training runs?
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{OBLESA:}
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Switch to the latest method named OBLESA.
+\item
+  Does the initial time required for OBLESA to work produces better
+  results (having a bird fly the full limit with less generations)?
+\end{itemize}
+
+\subsection{Part 4: The Flappy Bird
+Cup}\label{part-4-the-flappy-bird-cup}
+
+\textbf{Friendly Competition:} Once you have explored the algorithms,
+tune your hyperparameters to create an optimal agent.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Input features:} Are you feeding the agent \texttt{bird\_y}?
+  Or \texttt{bird\_y\ -\ pipe\_y} (relative distance)? (Hint: Relative
+  distance usually generalizes better).
+\item
+  \textbf{Hidden Layers:} Is a standard
+  \texttt{{[}3\ inputs\ -\textgreater{}\ 5\ hidden\ -\textgreater{}\ 1\ output{]}}
+  enough? Or do you need two hidden layers?
+\item
+  \textbf{Population Size:} Larger populations explore better but run
+  slower.
+\item
+  \textbf{Initialization:} Consider using \textbf{OBLESA
+  (Opposition-Based with Empty Space Attack)} or \textbf{QOBL
+  (Quasi-Opposition)} to get a competitive edge in the early
+  generations.
+\end{itemize}
+
+\textbf{Goal:} Train an agent that can reach \textbf{300 point}
+consistently (fly for 5 minutes).
+
+\end{document}

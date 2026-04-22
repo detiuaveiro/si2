@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    user: "${UID:-1000}:${GROUPS:-1000}"
+    ports:
+      - "8765:8765"
+    volumes:
+      - ./maps:/app/maps
+
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro

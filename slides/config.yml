@@ -7,7 +7,7 @@ highlight-style: tango
 mainfont: Noto Sans
 sansfont: Noto Sans
 monofont: Noto Sans Mono
-theme: metropolis
+theme: moloch
 themeoptions:
   - sectionpage=progressbar
   - numbering=fraction

@@ -1,0 +1,16 @@
+{
+  "width": 7,
+  "height": 7,
+  "type": "room",
+  "grid": [
+    ["floor", "floor", "floor", "obstacle", "floor", "floor", "floor"],
+    ["floor", "obstacle", "floor", "floor", "floor", "obstacle", "floor"],
+    ["floor", "floor", "floor", "floor", "floor", "floor", "floor"],
+    ["obstacle", "floor", "floor", "obstacle", "floor", "floor", "obstacle"],
+    ["floor", "floor", "floor", "floor", "floor", "floor", "floor"],
+    ["floor", "obstacle", "floor", "floor", "floor", "obstacle", "floor"],
+    ["floor", "floor", "floor", "floor", "floor", "floor", "floor"]
+  ],
+  "start": [3, 6],
+  "target": [5, 3]
+}

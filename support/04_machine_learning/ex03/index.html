@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MSc Probabilistic Agent</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; font-family: sans-serif; background: #f0f2f5; }
+        .container { display: flex; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .grid { display: grid; grid-template-columns: repeat(3, 100px); gap: 5px; margin-right: 30px; }
+        .cell { width: 100px; height: 100px; border: 2px solid #333; font-size: 2.5em;
+                display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .cell.preview { color: #ff000055; } /* Faded red for bot prediction */
+        #chart-container { width: 400px; }
+    </style>
+</head>
+<body>
+    <h1 id="status">Your Turn (X)</h1>
+    <div class="container">
+        <div class="grid" id="grid"></div>
+        <div id="chart-container"><canvas id="probChart"></canvas></div>
+    </div>
+
+    <script>
+        const API_BASE = `http://${window.location.hostname || '127.0.0.1'}:8000`;
+        let gameState = ["", "", "", "", "", "", "", "", ""];
+        let gameActive = true;
+        let humanPlayer = "X"; // Alternates every game
+        let currentPlayer = "X";
+        let isFetching = false; // THE GUARD: Prevents request storms
+        let ghostCell = null;
+
+        const ctx = document.getElementById('probChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: { labels: [1,2,3,4,5,6,7,8,9], datasets: [{ label: 'Probabilities', data: Array(9).fill(0), backgroundColor: '#36A2EB' }] },
+            options: { scales: { y: { beginAtZero: true, max: 1 } } }
+        });
+
+        function getBoardString() {
+            return gameState.map(s => s === "X" ? 1 : (s === "O" ? 2 : 0)).join('');
+        }
+
+        async function updateUI(boardStr) {
+            const res = await fetch(`${API_BASE}/probs?board=${boardStr}`);
+            const data = await res.json();
+            chart.data.datasets[0].data = data.probs;
+            chart.update();
+        }
+
+        async function handleCellIn(e) {
+            const idx = e.target.dataset.index;
+            if (!gameActive || gameState[idx] !== "" || currentPlayer !== humanPlayer || isFetching) return;
+
+            isFetching = true;
+            // Simulate board with human move at hovered cell
+            let tempState = [...gameState];
+            tempState[idx] = humanPlayer;
+            const tempBoardStr = tempState.map(s => s === "X" ? 1 : (s === "O" ? 2 : 0)).join('');
+
+            try {
+                const res = await fetch(`${API_BASE}/move?board=${tempBoardStr}&temp=0.1`);
+                const data = await res.json();
+
+                if (data.move !== null && gameState[data.move] === "") {
+                    ghostCell = document.getElementById(`cell-${data.move}`);
+                    ghostCell.innerHTML = humanPlayer === "X" ? "O" : "X";
+                    ghostCell.classList.add('preview');
+                }
+                await updateUI(tempBoardStr);
+            } finally {
+                isFetching = false;
+            }
+        }
+
+        function handleCellOut() {
+            if (ghostCell) {
+                ghostCell.innerHTML = "";
+                ghostCell.classList.remove('preview');
+                ghostCell = null;
+            }
+        }
+
+        async function handleCellClick(e) {
+            const idx = e.target.dataset.index;
+            if (!gameActive || gameState[idx] !== "" || currentPlayer !== humanPlayer) return;
+
+            gameState[idx] = humanPlayer;
+            render();
+            if (checkWinner()) return;
+
+            currentPlayer = humanPlayer === "X" ? "O" : "X";
+            await botPlay();
+        }
+
+        async function botPlay() {
+            document.getElementById('status').innerText = "Agent is thinking...";
+            const res = await fetch(`${API_BASE}/move?board=${getBoardString()}&temp=0.1`);
+            const data = await res.json();
+
+            if (data.move !== null) {
+                gameState[data.move] = humanPlayer === "X" ? "O" : "X";
+                render();
+                if (!checkWinner()) {
+                    currentPlayer = humanPlayer;
+                    document.getElementById('status').innerText = "Your Turn";
+                    updateUI(getBoardString());
+                }
+            }
+        }
+
+        function checkWinner() {
+            const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            let winner = null;
+            for (let condition of wins) {
+                let [a, b, c] = condition;
+                if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+                    winner = gameState[a];
+                    break;
+                }
+            }
+
+            if (winner || !gameState.includes("")) {
+                gameActive = false;
+                setTimeout(() => {
+                    alert(winner ? `Winner: ${winner}` : "Draw!");
+                    resetGame();
+                }, 100);
+                return true;
+            }
+            return false;
+        }
+
+        function resetGame() {
+            gameState = ["", "", "", "", "", "", "", "", ""];
+            humanPlayer = humanPlayer === "X" ? "O" : "X"; // INVERT ORDER
+            currentPlayer = "X";
+            gameActive = true;
+            render();
+            updateUI(getBoardString());
+            if (currentPlayer !== humanPlayer) botPlay();
+        }
+
+        function render() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            gameState.forEach((cell, i) => {
+                const div = document.createElement('div');
+                div.className = 'cell';
+                div.id = `cell-${i}`;
+                div.dataset.index = i;
+                div.innerHTML = cell;
+                div.addEventListener('click', handleCellClick);
+                div.addEventListener('mouseenter', handleCellIn);
+                div.addEventListener('mouseleave', handleCellOut);
+                grid.appendChild(div);
+            });
+            document.getElementById('status').innerText = currentPlayer === humanPlayer ? "Your Turn" : "Agent Thinking...";
+        }
+
+        render();
+        updateUI(getBoardString());
+    </script>
+</body>
+</html>
