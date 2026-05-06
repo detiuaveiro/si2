@@ -1,0 +1,40 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+canvas {
+    border: 4px solid #333;
+    border-radius: 4px;
+    background-color: #fafafa;
+    margin: 1rem 0;
+}
+
+#status {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.connected { color: #28a745; }
+.disconnected { color: #dc3545; }
+
+#info {
+    font-family: monospace;
+    background: #eee;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: left;
+}

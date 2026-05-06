@@ -1,0 +1,13 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8003:8003"
+
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "8083:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
