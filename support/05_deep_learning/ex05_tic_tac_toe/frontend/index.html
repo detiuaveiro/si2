@@ -10,9 +10,19 @@
     <div id="container">
         <h1>Tic-Tac-Toe Agent</h1>
         <div id="status">Connecting...</div>
-        <canvas id="gameCanvas" width="300" height="300"></canvas>
-        <div id="winner-display">Game in progress</div>
+        <div class="main-layout">
+            <div class="game-box">
+                <canvas id="gameCanvas" width="300" height="300"></canvas>
+                <div id="winner-display">Game in progress</div>
+                <button id="reset-btn">Reset Game</button>
+            </div>
+            <div class="network-box">
+                <h3>Neural Network Activations</h3>
+                <canvas id="canvas_network" width="500" height="400"></canvas>
+            </div>
+        </div>
     </div>
+    <script src="draw_tools.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

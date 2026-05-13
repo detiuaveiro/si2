@@ -3,11 +3,11 @@ services:
     build:
       context: ./backend
     ports:
-      - "8003:8003"
+      - "8765:8765"
 
   frontend:
     image: nginx:alpine
     ports:
-      - "8083:80"
+      - "8080:80"
     volumes:
       - ./frontend:/usr/share/nginx/html:ro

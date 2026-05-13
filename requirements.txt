@@ -11,3 +11,4 @@ matplotlib>=3.10.0
 Pillow>=11.1.0
 requests>=2.32.3
 websockets>=14.0
+pyBlindOpt>=0.2.8

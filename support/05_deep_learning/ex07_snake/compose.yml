@@ -3,7 +3,7 @@ services:
     build:
       context: ./backend
     ports:
-      - "8000:8000"
+      - "8765:8765"
 
   frontend:
     image: nginx:alpine
