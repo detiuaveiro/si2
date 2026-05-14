@@ -1,0 +1,31 @@
+% Typography improvements
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,calc,fit,decorations.pathreplacing}
+
+% Custom headers and footers for a two-sided booklet
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Clear all headers/footers
+
+% Even pages (Left) get page number on the left, Chapter name on the right
+\fancyhead[LE]{\textbf{\thepage}}
+\fancyhead[RE]{\leftmark}
+
+% Odd pages (Right) get Section name on the left, page number on the right
+\fancyhead[LO]{\rightmark}
+\fancyhead[RO]{\textbf{\thepage}}
+
+% Add a nice subtle line under the header
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Ensure plain pages (like chapter starts) don't have headers but keep footers clean
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% Optional: Control orphan and widow lines so pages break nicely
+\clubpenalty=10000
+\widowpenalty=10000

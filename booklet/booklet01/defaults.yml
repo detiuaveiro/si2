@@ -1,0 +1,23 @@
+from: markdown
+to: pdf
+pdf-engine: xelatex
+toc: true
+toc-depth: 2
+number-sections: true
+top-level-division: chapter
+resource-path:
+  - "."
+  - "../../assets"
+  - "../../assets/figures"
+variables:
+  documentclass: scrbook
+  papersize: a5
+  fontsize: 10pt
+  geometry:
+    - inner=1.5cm
+    - outer=1cm
+    - top=1.5cm
+    - bottom=1.5cm
+    - bindingoffset=5mm
+include-in-header:
+  - header.tex

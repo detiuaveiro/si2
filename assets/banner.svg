@@ -1,0 +1,71 @@
+<svg width="512" height="128" viewBox="0 0 512 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nord Light Palette -->
+  <rect width="512" height="128" rx="16" fill="#ECEFF4"/>
+  <rect width="508" height="124" x="2" y="2" rx="14" fill="none" stroke="#D8DEE9" stroke-width="2"/>
+
+  <!-- Components - Shifted slightly down from top -->
+  <g transform="translate(0, 10)">
+    
+    <!-- 1. Environment (Modern Earth) -->
+    <g transform="translate(60, 50)">
+      <text y="-40" text-anchor="middle" fill="#4C566A" font-family="monospace" font-size="9" font-weight="bold">ENVIRONMENT</text>
+      <circle r="32" fill="#88C0D0"/>
+      <path d="M-15 -15 L-5 -10 L-10 0 L-2 15 L-15 20 L-20 5 Z" fill="#A3BE8C"/>
+      <path d="M5 -15 L20 -20 L25 -5 L20 10 L10 20 L0 10 L5 0 Z" fill="#A3BE8C"/>
+      <circle r="32" fill="none" stroke="#4C566A" stroke-width="2"/>
+    </g>
+
+    <!-- Arrow to Sensing -->
+    <path d="M100 50 H135" fill="none" stroke="#2E3440" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow-head-banner-final)"/>
+
+    <!-- 2. Sensing -->
+    <g transform="translate(170, 50)">
+      <text y="-32" text-anchor="middle" fill="#5E81AC" font-family="monospace" font-size="9" font-weight="bold">SENSING</text>
+      <circle r="24" fill="#E5E9F0" stroke="#5E81AC" stroke-width="2"/>
+      <path d="M-11 0 Q0 -9 11 0 Q0 9 -11 0 Z" fill="none" stroke="#5E81AC" stroke-width="2.5"/>
+      <circle r="4" fill="#5E81AC"/>
+    </g>
+
+    <!-- Arrow to Model -->
+    <path d="M202 50 H232" fill="none" stroke="#2E3440" stroke-width="1.5" marker-end="url(#arrow-head-banner-final)"/>
+
+    <!-- 3. Model (Fixed Gears with Hubs) -->
+    <g transform="translate(285, 50)">
+      <text y="-40" text-anchor="middle" fill="#2E3440" font-family="monospace" font-size="10" font-weight="bold">MODEL</text>
+      <rect x="-42" y="-32" width="84" height="64" rx="8" fill="#E5E9F0" stroke="#2E3440" stroke-width="2"/>
+      <!-- Gear 1 -->
+      <g transform="translate(-10, -8) scale(0.9)">
+        <circle r="12" fill="none" stroke="#4C566A" stroke-width="3"/>
+        <path d="M0 -16 V-12 M0 16 V12 M-16 0 H-12 M16 0 H12 M-11.3 -11.3 L-8.5 -8.5 M11.3 11.3 L8.5 8.5 M-11.3 11.3 L-8.5 8.5 M11.3 -11.3 L8.5 -8.5" stroke="#4C566A" stroke-width="3" stroke-linecap="round"/>
+        <circle r="4" fill="#4C566A"/>
+      </g>
+      <!-- Gear 2 - Rotated for Alignment -->
+      <g transform="translate(14, 10) scale(0.75) rotate(22.5)">
+        <circle r="12" fill="none" stroke="#81A1C1" stroke-width="3"/>
+        <path d="M0 -16 V-12 M0 16 V12 M-16 0 H-12 M16 0 H12 M-11.3 -11.3 L-8.5 -8.5 M11.3 11.3 L8.5 8.5 M-11.3 11.3 L-8.5 8.5 M11.3 -11.3 L8.5 -8.5" stroke="#81A1C1" stroke-width="3" stroke-linecap="round"/>
+        <circle r="4" fill="#81A1C1"/>
+      </g>
+    </g>
+
+    <!-- Arrow to Action -->
+    <path d="M338 50 H368" fill="none" stroke="#2E3440" stroke-width="1.5" marker-end="url(#arrow-head-banner-final)"/>
+
+    <!-- 4. Action -->
+    <g transform="translate(410, 50)">
+      <text y="-32" text-anchor="middle" fill="#D08770" font-family="monospace" font-size="9" font-weight="bold">ACTION</text>
+      <circle r="24" fill="#E5E9F0" stroke="#D08770" stroke-width="2"/>
+      <path d="M-13 0 H3 L10 -7 M3 0 L10 7" fill="none" stroke="#D08770" stroke-width="4" stroke-linecap="round"/>
+      <rect x="-18" y="-3.5" width="7" height="7" rx="1" fill="#D08770"/>
+    </g>
+
+    <!-- Return Arrow -->
+    <path d="M410 74 C 410 110, 60 110, 60 82" fill="none" stroke="#4C566A" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow-head-banner-final)"/>
+
+  </g>
+
+  <defs>
+    <marker id="arrow-head-banner-final" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2E3440"/>
+    </marker>
+  </defs>
+</svg>
